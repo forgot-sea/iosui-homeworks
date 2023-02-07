@@ -9,11 +9,12 @@ import UIKit
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
-
+    var window: UIWindow?
+    
 
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
+        
         return true
     }
 
@@ -32,5 +33,30 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
 
+}
+
+final class MainTabBarViewController: UITabBarController {
+    
+    private let feedVC = FeedViewController()
+    private let profileVC = ProfileViewController()
+    private let postVC = PostViewController()
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        view.backgroundColor = .white
+        setupControllers()
+    }
+    
+    private func setupControllers() {
+        let navigationController = UINavigationController(rootViewController: feedVC)
+        feedVC.tabBarItem.title = "Лента"
+        feedVC.tabBarItem.image = UIImage(systemName: "doc.richtext")
+        
+        let profileController = UINavigationController(rootViewController: profileVC)
+        profileVC.tabBarItem.title = "Профиль"
+        profileVC.tabBarItem.image = UIImage(systemName: "person.crop.circle")
+        
+        viewControllers = [navigationController, profileController]
+    }
 }
 
