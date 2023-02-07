@@ -31,11 +31,11 @@ final class FeedViewController: UIViewController {
         private func setupButton() {
             view.addSubview(viewPostButton)
             viewPostButton.addTarget(self, action: #selector(tapAction), for: .touchUpInside)
-            self.viewPostButton.bottomAnchor.constraint(equalTo: self.view.bottomAnchor, constant: -100).isActive = true
-            self.viewPostButton.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 20).isActive = true
-            self.viewPostButton.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -20).isActive = true
-            self.viewPostButton.heightAnchor.constraint(equalToConstant: 50).isActive = true
-
+            NSLayoutConstraint.activate([self.viewPostButton.bottomAnchor.constraint(equalTo: self.view.bottomAnchor, constant: -100),                                         self.viewPostButton.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 20),
+                                         
+                self.viewPostButton.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -20),
+                                         
+                self.viewPostButton.heightAnchor.constraint(equalToConstant: 50)])
         }
 
 
