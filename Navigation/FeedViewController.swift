@@ -17,6 +17,11 @@ final class FeedViewController: UIViewController {
             button.backgroundColor = .systemBlue
             button.layer.cornerRadius = 15
             button.translatesAutoresizingMaskIntoConstraints = false
+            
+            button.layer.shadowOffset = CGSize(width: 4, height: 4)
+            button.layer.shadowOpacity = 0.7
+            button.layer.shadowRadius = 4
+            button.layer.shadowColor = UIColor.black.cgColor
             return button
         }()
         
