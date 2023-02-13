@@ -24,11 +24,9 @@ class ProfileViewController: UIViewController {
         view.backgroundColor = .systemGray3
         self.title = "Мой профиль"
         view.addSubview(profileHeaderView)
-        profileHeaderView.setupAvatar()
-        profileHeaderView.setupStatusButton()
-        profileHeaderView.setupName()
-        profileHeaderView.setupStatus()
-        profileHeaderView.setupText()
+//        profileHeaderView.myAddSubview()
+//        profileHeaderView.myConstraint()
+        
     }
     
 }
