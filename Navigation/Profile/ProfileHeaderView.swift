@@ -109,14 +109,14 @@ class ProfileHeaderView: UIView {
         NSLayoutConstraint.activate([
             self.status.topAnchor.constraint(equalTo: self.name.bottomAnchor, constant: 12),
             self.status.leftAnchor.constraint(equalTo: self.avatar.rightAnchor, constant: 20)])
-        
+
         NSLayoutConstraint.activate([
             self.text.bottomAnchor.constraint(equalTo: self.statusButton.topAnchor, constant: -15),
             self.text.leftAnchor.constraint(equalTo: self.avatar.rightAnchor, constant: 10),
             self.text.rightAnchor.constraint(equalTo: self.safeAreaLayoutGuide.rightAnchor, constant: -16),
             self.text.heightAnchor.constraint(equalToConstant: 40),
             self.text.widthAnchor.constraint(equalToConstant: 250)])
-        
+
         NSLayoutConstraint.activate([
             self.statusButton.topAnchor.constraint(equalTo: self.avatar.bottomAnchor, constant: 45),
             self.statusButton.leftAnchor.constraint(equalTo: self.safeAreaLayoutGuide.leftAnchor, constant: 16),
@@ -126,13 +126,14 @@ class ProfileHeaderView: UIView {
     
     override init(frame: CGRect) {
         super.init(frame: .zero)
-        myConstraint()
         myAddSubview()
+        myConstraint()
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    
 }
 
 
