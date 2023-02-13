@@ -100,6 +100,7 @@ class ProfileHeaderView: UIView {
         NSLayoutConstraint.activate([
             self.text.bottomAnchor.constraint(equalTo: self.statusButton.topAnchor, constant: -15),
             self.text.leftAnchor.constraint(equalTo: self.avatar.rightAnchor, constant: 10),
+            self.text.rightAnchor.constraint(equalTo: self.safeAreaLayoutGuide.rightAnchor, constant: -16),
             self.text.heightAnchor.constraint(equalToConstant: 40),
             self.text.widthAnchor.constraint(equalToConstant: 250)])
     }
@@ -110,8 +111,8 @@ class ProfileHeaderView: UIView {
         
         NSLayoutConstraint.activate([
             self.statusButton.topAnchor.constraint(equalTo: self.avatar.bottomAnchor, constant: 45),
-            self.statusButton.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 16),
-            self.statusButton.rightAnchor.constraint(equalTo: self.rightAnchor, constant: -16),
+            self.statusButton.leftAnchor.constraint(equalTo: self.safeAreaLayoutGuide.leftAnchor, constant: 16),
+            self.statusButton.rightAnchor.constraint(equalTo: self.safeAreaLayoutGuide.rightAnchor, constant: -16),
             self.statusButton.heightAnchor.constraint(equalToConstant: 50)])
     }
 }
