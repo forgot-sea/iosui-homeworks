@@ -27,6 +27,7 @@ class ProfileViewController: UIViewController {
         profileHeaderView.setupAvatar()
         profileHeaderView.setupStatusButton()
         profileHeaderView.setupName()
+        profileHeaderView.setupStatus()
         profileHeaderView.setupText()
     }
     

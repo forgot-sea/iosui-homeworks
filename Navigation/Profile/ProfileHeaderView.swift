@@ -17,11 +17,13 @@ class ProfileHeaderView: UIView {
     
     private let name = UILabel(frame: CGRect(x: 80, y: 80, width: 100, height: 100))
     
+    private let status = UILabel(frame: CGRect(x: 80, y: 160, width: 100, height: 100))
+    
     private let text = UITextField(frame: CGRect(x: 80, y: 80, width: 100, height: 100))
     
     private let statusButton: UIButton = {
         let button = UIButton(frame: CGRect(x:0, y: 0, width: 0, height: 50))
-//        button.addTarget(self, action: #selector(buttonPressed), for: .touchUpInside)
+        button.addTarget(self, action: #selector(buttonPressed), for: .touchUpInside)
         button.setTitle("Show status", for: .normal)
         button.backgroundColor = .systemBlue
         button.layer.cornerRadius = 15
@@ -35,8 +37,14 @@ class ProfileHeaderView: UIView {
         return button
     }()
     
-//    @objc func buttonPressed(){
-//print("DSCdsc")    }
+    @objc func buttonPressed(){
+        if text.text == "" {
+            status.text = "Waiting for something..."
+        }else{
+            status.text = text.text}
+        print(text.text ?? "")
+        
+    }
     
     func setupAvatar() {
         addSubview(avatar)
@@ -64,17 +72,36 @@ class ProfileHeaderView: UIView {
                                     ])
     }
     
-    func setupText(){
-        addSubview(text)
-        text.placeholder = "Waiting for something..."
-        text.font = UIFont.systemFont(ofSize: 20)
-        text.translatesAutoresizingMaskIntoConstraints = false
+    func setupStatus(){
+        addSubview(status)
+        status.text = "Waiting for something..."
+        status.font = UIFont.systemFont(ofSize: 20)
+        status.translatesAutoresizingMaskIntoConstraints = false
+        status.textColor = .gray
         
         NSLayoutConstraint.activate([
-            self.text.bottomAnchor.constraint(equalTo: self.statusButton.topAnchor, constant: -34),
-            self.text.leftAnchor.constraint(equalTo: self.avatar.rightAnchor, constant: 20)
-                                    ])
-        print(text)
+            self.status.topAnchor.constraint(equalTo: self.name.bottomAnchor, constant: 12),
+            self.status.leftAnchor.constraint(equalTo: self.avatar.rightAnchor, constant: 20)])
+    }
+    
+    func setupText(){
+        addSubview(text)
+        text.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 10, height: text.frame.height))
+        text.leftViewMode = .always
+        text.placeholder = " Write the status"
+        text.font = UIFont.systemFont(ofSize: 20)
+        text.translatesAutoresizingMaskIntoConstraints = false
+        text.layer.cornerRadius = 10
+        text.layer.borderColor = UIColor.black.cgColor
+        text.layer.borderWidth = 1
+        text.backgroundColor = .white
+        
+
+        NSLayoutConstraint.activate([
+            self.text.bottomAnchor.constraint(equalTo: self.statusButton.topAnchor, constant: -15),
+            self.text.leftAnchor.constraint(equalTo: self.avatar.rightAnchor, constant: 10),
+            self.text.heightAnchor.constraint(equalToConstant: 40),
+            self.text.widthAnchor.constraint(equalToConstant: 250)])
     }
 
     
@@ -82,11 +109,10 @@ class ProfileHeaderView: UIView {
         addSubview(statusButton)
         
         NSLayoutConstraint.activate([
-            self.statusButton.topAnchor.constraint(equalTo: self.avatar.bottomAnchor, constant: 24),
+            self.statusButton.topAnchor.constraint(equalTo: self.avatar.bottomAnchor, constant: 45),
             self.statusButton.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 16),
             self.statusButton.rightAnchor.constraint(equalTo: self.rightAnchor, constant: -16),
-            self.statusButton.heightAnchor.constraint(equalToConstant: 50)
-                                    ])
+            self.statusButton.heightAnchor.constraint(equalToConstant: 50)])
     }
 }
 
