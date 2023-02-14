@@ -60,7 +60,7 @@ class ProfileHeaderView: UIView {
         return myText
     }()
     
-    private let statusButton: UIButton = {
+    private lazy var statusButton: UIButton = {
         let button = UIButton(frame: .zero)
         button.addTarget(self, action: #selector(buttonPressed), for: .touchUpInside)
         button.setTitle("Show status", for: .normal)
@@ -97,7 +97,7 @@ class ProfileHeaderView: UIView {
     
     func myConstraint() {
         NSLayoutConstraint.activate([
-        self.avatar.topAnchor.constraint(equalTo:self.safeAreaLayoutGuide.topAnchor, constant: 16),                                         self.avatar.leftAnchor.constraint(equalTo: self.safeAreaLayoutGuide.leftAnchor, constant: 16),
+        self.avatar.topAnchor.constraint(equalTo:self.safeAreaLayoutGuide.topAnchor, constant: 16),                                         self.avatar.leadingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.leadingAnchor, constant: 16),
             self.avatar.heightAnchor.constraint(equalToConstant: 100),
             self.avatar.widthAnchor.constraint(equalToConstant: 100),
         
@@ -111,13 +111,12 @@ class ProfileHeaderView: UIView {
 
             self.text.bottomAnchor.constraint(equalTo: self.statusButton.topAnchor, constant: -15),
             self.text.leftAnchor.constraint(equalTo: self.avatar.rightAnchor, constant: 10),
-            self.text.rightAnchor.constraint(equalTo: self.safeAreaLayoutGuide.rightAnchor, constant: -16),
+            self.text.trailingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.trailingAnchor, constant: -16), // из-за этого констрента в консоле появляются варнинги, подскажите как от них избавиться
             self.text.heightAnchor.constraint(equalToConstant: 40),
-            self.text.widthAnchor.constraint(equalToConstant: 250),
 
             self.statusButton.topAnchor.constraint(equalTo: self.avatar.bottomAnchor, constant: 45),
             self.statusButton.leftAnchor.constraint(equalTo: self.safeAreaLayoutGuide.leftAnchor, constant: 16),
-            self.statusButton.rightAnchor.constraint(equalTo: self.safeAreaLayoutGuide.rightAnchor, constant: -16),
+            self.statusButton.rightAnchor.constraint(equalTo: self.safeAreaLayoutGuide.rightAnchor, constant: -16), // из-за этого констрента в консоле появляются варнинги, подскажите как от них избавиться
             self.statusButton.heightAnchor.constraint(equalToConstant: 50)])
     }
     
