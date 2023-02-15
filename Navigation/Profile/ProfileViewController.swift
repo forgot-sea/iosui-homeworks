@@ -9,28 +9,40 @@ import UIKit
 
 class ProfileViewController: UIViewController {
     
+    var secondButton: UIButton = {
+        let button = UIButton(frame: .zero)
+        button.setTitle("Title", for: .normal)
+        button.backgroundColor = .systemBlue
+        return button
+    }()
     
-    var profileHeaderView = ProfileHeaderView()
-
-    override func viewWillLayoutSubviews() {
+    private func setupConstraints(){
+        secondButton.translatesAutoresizingMaskIntoConstraints = false
         profileHeaderView.translatesAutoresizingMaskIntoConstraints = false
-        super.viewWillLayoutSubviews()
         
         NSLayoutConstraint.activate([
-            self.profileHeaderView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
-            self.profileHeaderView.leftAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leftAnchor),
-            self.profileHeaderView.rightAnchor.constraint(equalTo: view.safeAreaLayoutGuide.rightAnchor),
-            self.profileHeaderView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)])
+            secondButton.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            secondButton.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            secondButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
+            
+            profileHeaderView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            profileHeaderView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            profileHeaderView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            profileHeaderView.heightAnchor.constraint(equalToConstant: 220)])
     }
     
+    var profileHeaderView = ProfileHeaderView()
     
+    override func viewWillLayoutSubviews() {
+        super.viewWillLayoutSubviews()
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = "Мой профиль"
         view.addSubview(profileHeaderView)
+        view.addSubview(secondButton)
+        setupConstraints()
         profileHeaderView.backgroundColor = .systemGray3
-        
     }
-    
 }
