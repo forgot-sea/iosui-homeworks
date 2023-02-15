@@ -36,9 +36,7 @@ final class PostViewController: UIViewController {
         infoVC.modalPresentationStyle = .fullScreen
         navigationController?.pushViewController(infoVC, animated: true)
     }
-
-
-    
+  
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
     }

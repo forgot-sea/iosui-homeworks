@@ -33,8 +33,8 @@ final class FeedViewController: UIViewController {
         button.layer.shadowColor = UIColor.black.cgColor
         button.addTarget(self, action: #selector(tapAction), for: .touchUpInside)
         return button
-    
     }()
+    
     private lazy var secondPostButton: UIButton = {
         let button = UIButton(frame: .zero)
         button.setTitle("Посмотреть пост", for: .normal)
@@ -48,30 +48,27 @@ final class FeedViewController: UIViewController {
         button.layer.shadowColor = UIColor.black.cgColor
         button.addTarget(self, action: #selector(tapAction), for: .touchUpInside)
         return button
-
     }()
-        
-        override func viewDidLoad() {
-            super.viewDidLoad()
-            view.backgroundColor = .white
-            self.title = "Лента"
-            setupSV()
-        }
-        
-        
-        @objc private func barItemAction() {
-            let profileVC = ProfileViewController()
-            profileVC.title = "Профиль"
-            profileVC.modalPresentationStyle = .fullScreen
-            navigationController?.pushViewController(profileVC, animated: true)
-        }
     
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        view.backgroundColor = .white
+        self.title = "Лента"
+        setupSV()
+    }
     
-        @objc private func tapAction() {
-            let postVC = PostViewController()
-            postVC.titlePost = post.title
-            navigationController?.pushViewController(postVC, animated: true)
-        }
+    @objc private func barItemAction() {
+        let profileVC = ProfileViewController()
+        profileVC.title = "Профиль"
+        profileVC.modalPresentationStyle = .fullScreen
+        navigationController?.pushViewController(profileVC, animated: true)
+    }
+    
+    @objc private func tapAction() {
+        let postVC = PostViewController()
+        postVC.titlePost = post.title
+        navigationController?.pushViewController(postVC, animated: true)
+    }
     
     private func setupSV() {
         view.addSubview(stackView)
@@ -83,8 +80,7 @@ final class FeedViewController: UIViewController {
             stackView.centerYAnchor.constraint(equalTo: view.centerYAnchor),
             stackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
             stackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
-            stackView.heightAnchor.constraint(equalToConstant: 100)
-        ])
+            stackView.heightAnchor.constraint(equalToConstant: 100)])
     }
     
 }
