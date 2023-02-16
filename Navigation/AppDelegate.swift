@@ -37,7 +37,8 @@ final class MainTabBarViewController: UITabBarController {
     private let feedVC = FeedViewController()
     private let profileVC = ProfileViewController()
     private let postVC = PostViewController()
-    
+    private let loginVC = LogInViewController()
+   
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
@@ -49,11 +50,12 @@ final class MainTabBarViewController: UITabBarController {
         feedVC.tabBarItem.title = "Лента"
         feedVC.tabBarItem.image = UIImage(systemName: "doc.richtext")
         
-        let profileController = UINavigationController(rootViewController: profileVC)
-        profileVC.tabBarItem.title = "Профиль"
-        profileVC.tabBarItem.image = UIImage(systemName: "person.crop.circle")
-        
-        viewControllers = [navigationController, profileController]
+        let navigationLoginVC = UINavigationController(rootViewController: loginVC)
+        loginVC.tabBarItem.title = "Профиль"
+        loginVC.tabBarItem.image = UIImage(systemName: "person.crop.circle")
+        navigationLoginVC.navigationBar.isHidden = true
+
+        viewControllers = [navigationController,navigationLoginVC]
     }
 }
 
