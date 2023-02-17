@@ -10,10 +10,12 @@ class ProfileHeaderView: UIView {
     
     private let avatar: UIImageView = {
         let avatarImage = UIImageView(frame: .zero)
-        avatarImage.image = UIImage(named: "abc")
+//        avatarImage.image = UIImage(named: "abc")
+        avatarImage.image = UIImage(named: "scale_1200")
         avatarImage.layer.cornerRadius = 50
         avatarImage.layer.masksToBounds = true
         avatarImage.layer.borderWidth = 3
+        avatarImage.contentMode = .scaleAspectFill
         avatarImage.layer.borderColor = UIColor.white.cgColor
         avatarImage.translatesAutoresizingMaskIntoConstraints = false
         return avatarImage
@@ -40,7 +42,7 @@ class ProfileHeaderView: UIView {
         let myText = UITextField(frame: .zero)
         myText.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 10, height: myText.frame.height))
         myText.leftViewMode = .always
-        myText.placeholder = " Write the status"
+        myText.placeholder = "Write the status"
         myText.font = UIFont.systemFont(ofSize: 20)
         myText.translatesAutoresizingMaskIntoConstraints = false
         myText.layer.cornerRadius = 10
