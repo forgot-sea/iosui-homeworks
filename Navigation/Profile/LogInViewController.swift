@@ -9,6 +9,19 @@ import UIKit
 
 class LogInViewController: UIViewController {
     
+    private let stackView: UIStackView = {
+        let stackView = UIStackView()
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        stackView.axis = .vertical
+        stackView.distribution = .fillEqually
+        stackView.layer.borderWidth = 0.5
+        stackView.layer.borderColor = UIColor.lightGray.cgColor
+        stackView.layer.cornerRadius = 10
+        stackView.layer.masksToBounds = true
+
+        return stackView
+    }()
+    
     let scrollView: UIScrollView = {
         let scrollView = UIScrollView()
         scrollView.translatesAutoresizingMaskIntoConstraints = false
@@ -47,10 +60,8 @@ class LogInViewController: UIViewController {
         email.backgroundColor = .systemGray6
         email.leftView = UIView(frame: CGRect(origin: .zero, size: CGSize(width: 10, height: email.frame.height)))
         email.leftViewMode = .always
-        email.layer.cornerRadius = 10
-        email.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
-        email.layer.borderColor = UIColor.systemGray4.cgColor
-        email.layer.borderWidth = 1
+        email.layer.borderColor = UIColor.lightGray.cgColor
+        email.layer.borderWidth = 0.5
         email.delegate = self
         
         return email
@@ -65,12 +76,10 @@ class LogInViewController: UIViewController {
         password.tintColor = UIColor(named: "CustomColor")
         password.autocapitalizationType = .none
         password.backgroundColor = .systemGray6
-        password.layer.cornerRadius = 10
-        password.layer.maskedCorners = [.layerMinXMaxYCorner, .layerMaxXMaxYCorner]
         password.leftView = UIView(frame: CGRect(origin: .zero, size: CGSize(width: 10, height: password.frame.height)))
         password.leftViewMode = .always
         password.layer.borderColor = UIColor.systemGray4.cgColor
-        password.layer.borderWidth = 1
+        password.layer.borderWidth = 0.5
         password.isSecureTextEntry = true
         password.delegate = self
         
@@ -110,8 +119,9 @@ class LogInViewController: UIViewController {
         view.addSubview(scrollView)
         scrollView.addSubview(contentView)
         contentView.addSubview(vkLogo)
-        contentView.addSubview(emailTextField)
-        contentView.addSubview(passwordTextField)
+        contentView.addSubview(stackView)
+        stackView.addArrangedSubview(emailTextField)
+        stackView.addArrangedSubview(passwordTextField)
         contentView.addSubview(logInButton)
         
         NSLayoutConstraint.activate([
@@ -131,21 +141,16 @@ class LogInViewController: UIViewController {
             vkLogo.heightAnchor.constraint(equalToConstant: 100),
             vkLogo.widthAnchor.constraint(equalToConstant: 100),
             
-            emailTextField.topAnchor.constraint(equalTo: vkLogo.bottomAnchor, constant: 120),
-            emailTextField.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
-            emailTextField.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
-            emailTextField.heightAnchor.constraint(equalToConstant: 50),
+            stackView.topAnchor.constraint(equalTo: vkLogo.bottomAnchor, constant: 120),
+            stackView.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
+            stackView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
+            stackView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
+            stackView.heightAnchor.constraint(equalToConstant: 100),
             
-            passwordTextField.topAnchor.constraint(equalTo: emailTextField.bottomAnchor),
-            passwordTextField.leadingAnchor.constraint(equalTo: emailTextField.leadingAnchor),
-            passwordTextField.trailingAnchor.constraint(equalTo: emailTextField.trailingAnchor),
-            passwordTextField.heightAnchor.constraint(equalTo: emailTextField.heightAnchor),
-            
-            logInButton.topAnchor.constraint(equalTo: passwordTextField.bottomAnchor, constant: 16),
-            logInButton.leadingAnchor.constraint(equalTo: passwordTextField.leadingAnchor),
-            logInButton.trailingAnchor.constraint(equalTo: passwordTextField.trailingAnchor),
-            logInButton.heightAnchor.constraint(equalToConstant: 50),
-            logInButton.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -20)])
+            logInButton.topAnchor.constraint(equalTo: stackView.bottomAnchor, constant: 16),
+            logInButton.leadingAnchor.constraint(equalTo: stackView.leadingAnchor),
+            logInButton.trailingAnchor.constraint(equalTo: stackView.trailingAnchor),
+            logInButton.heightAnchor.constraint(equalToConstant: 50)])
     }
     
     override func viewDidLoad() {
