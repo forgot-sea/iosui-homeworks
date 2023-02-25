@@ -89,22 +89,23 @@ class ProfileHeaderView: UIView {
             avatar.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: 16),
             avatar.heightAnchor.constraint(equalToConstant: 100),
             avatar.widthAnchor.constraint(equalToConstant: 100),
-            
+
             name.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 27),
             name.leftAnchor.constraint(equalTo: avatar.rightAnchor, constant: 20),
-            
+
             status.topAnchor.constraint(equalTo: name.bottomAnchor, constant: 12),
             status.leftAnchor.constraint(equalTo: avatar.rightAnchor, constant: 20),
-            
+
             text.bottomAnchor.constraint(equalTo: statusButton.topAnchor, constant: -15),
             text.leftAnchor.constraint(equalTo: avatar.rightAnchor, constant: 10),
             text.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: -16),
             text.heightAnchor.constraint(equalToConstant: 40),
-            
+
             statusButton.topAnchor.constraint(equalTo: avatar.bottomAnchor, constant: 45),
             statusButton.leftAnchor.constraint(equalTo: safeAreaLayoutGuide.leftAnchor, constant: 16),
             statusButton.rightAnchor.constraint(equalTo: safeAreaLayoutGuide.rightAnchor, constant: -16),
-            statusButton.heightAnchor.constraint(equalToConstant: 50)])
+            statusButton.heightAnchor.constraint(equalToConstant: 50),
+            statusButton.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor, constant: -16)])
     }
     
     override init(frame: CGRect) {
@@ -117,5 +118,3 @@ class ProfileHeaderView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
 }
-
-

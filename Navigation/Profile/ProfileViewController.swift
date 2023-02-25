@@ -9,40 +9,58 @@ import UIKit
 
 class ProfileViewController: UIViewController {
     
-    var secondButton: UIButton = {
-        let button = UIButton(frame: .zero)
-        button.setTitle("Title", for: .normal)
-        button.backgroundColor = .systemBlue
-        return button
+    private let postmodel = Post.makeMockPost()
+    
+    private lazy var myTableView: UITableView = {
+        let tableView = UITableView(frame: .zero, style: .grouped)
+        tableView.dataSource = self
+        tableView.delegate = self
+        tableView.translatesAutoresizingMaskIntoConstraints = false
+        tableView.register(PostTableViewCell.self, forCellReuseIdentifier: PostTableViewCell.identifier)
+        return tableView
     }()
-    
-    private func setupConstraints(){
-        secondButton.translatesAutoresizingMaskIntoConstraints = false
-        profileHeaderView.translatesAutoresizingMaskIntoConstraints = false
-        
-        NSLayoutConstraint.activate([
-            secondButton.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            secondButton.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            secondButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
-            
-            profileHeaderView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
-            profileHeaderView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            profileHeaderView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            profileHeaderView.heightAnchor.constraint(equalToConstant: 220)])
-    }
-    
-    var profileHeaderView = ProfileHeaderView()
-    
-    override func viewWillLayoutSubviews() {
-        super.viewWillLayoutSubviews()
-    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.title = "Мой профиль"
-        view.addSubview(profileHeaderView)
-        view.addSubview(secondButton)
-        setupConstraints()
-        profileHeaderView.backgroundColor = .systemGray3
+        view.backgroundColor = .white
+        layout()
+    }
+    
+    private func layout() {
+        view.addSubview(myTableView)
+        
+        NSLayoutConstraint.activate([
+            myTableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            myTableView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
+            myTableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
+            myTableView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor)])
+    }
+}
+
+extension ProfileViewController: UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        postmodel.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: PostTableViewCell.identifier, for: indexPath) as! PostTableViewCell
+        cell.setupCell(model: postmodel[indexPath.row])
+        return cell
+    }
+    
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let header = ProfileHeaderView()
+        header.backgroundColor = .systemGray4
+        return header
+    }
+}
+
+extension ProfileViewController: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return UITableView.automaticDimension
+    }
+    
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return UITableView.automaticDimension
     }
 }

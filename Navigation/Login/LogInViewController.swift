@@ -113,6 +113,10 @@ class LogInViewController: UIViewController {
     @objc private func tapLoginAction() {
         let profileVC = ProfileViewController()
         navigationController?.pushViewController(profileVC, animated: true)
+
+//        profileVC.tabBarItem.title = "Профиль"
+//        profileVC.tabBarItem.image = UIImage(systemName: "person.crop.circle")
+//        navigationController?.setViewControllers([profileVC], animated: true)
     }
     
     private func layout(){

@@ -18,7 +18,7 @@ final class FeedViewController: UIViewController {
         return stackView
     }()
     
-    var post = Post(title: "Мой пост")
+//    var post = Post(title: "Мой пост")
     
     private lazy var firstPostButton: UIButton = {
         let button = UIButton(frame: .zero)
@@ -66,7 +66,7 @@ final class FeedViewController: UIViewController {
     
     @objc private func tapAction() {
         let postVC = PostViewController()
-        postVC.titlePost = post.title
+//        postVC.titlePost = post.title
         navigationController?.pushViewController(postVC, animated: true)
     }
     

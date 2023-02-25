@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5B0C3B3B29AA422000DC58FD /* PostTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B0C3B3A29AA422000DC58FD /* PostTableViewCell.swift */; };
+		5B0C3B3D29AA439F00DC58FD /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B0C3B3C29AA439F00DC58FD /* UIView+Extension.swift */; };
 		5B4A049A299E2D3700FCE31D /* LogInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B4A0499299E2D3700FCE31D /* LogInViewController.swift */; };
 		5B810A602991375400876B69 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B810A5F2991375400876B69 /* AppDelegate.swift */; };
 		5B810A622991375400876B69 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B810A612991375400876B69 /* SceneDelegate.swift */; };
@@ -22,6 +24,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		5B0C3B3A29AA422000DC58FD /* PostTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostTableViewCell.swift; sourceTree = "<group>"; };
+		5B0C3B3C29AA439F00DC58FD /* UIView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
 		5B4A0499299E2D3700FCE31D /* LogInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInViewController.swift; sourceTree = "<group>"; };
 		5B810A5C2991375400876B69 /* Navigation.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Navigation.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5B810A5F2991375400876B69 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -49,6 +53,40 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		5B0C3B3E29AA6BE500DC58FD /* Post */ = {
+			isa = PBXGroup;
+			children = (
+				5B0C3B3A29AA422000DC58FD /* PostTableViewCell.swift */,
+				5B91817C29928E8A002FCF5E /* Post.swift */,
+				5B91817A29928DD4002FCF5E /* PostViewController.swift */,
+			);
+			path = Post;
+			sourceTree = "<group>";
+		};
+		5B0C3B3F29AA6BFC00DC58FD /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				5B4A0499299E2D3700FCE31D /* LogInViewController.swift */,
+			);
+			path = Login;
+			sourceTree = "<group>";
+		};
+		5B0C3B4029AA6C2E00DC58FD /* Feed */ = {
+			isa = PBXGroup;
+			children = (
+				5B810A8029915AF000876B69 /* FeedViewController.swift */,
+			);
+			path = Feed;
+			sourceTree = "<group>";
+		};
+		5B0C3B4129AA6C3700DC58FD /* Info */ = {
+			isa = PBXGroup;
+			children = (
+				5B91817E29928ECF002FCF5E /* InfoViewController.swift */,
+			);
+			path = Info;
+			sourceTree = "<group>";
+		};
 		5B810A532991375400876B69 = {
 			isa = PBXGroup;
 			children = (
@@ -69,13 +107,14 @@
 			isa = PBXGroup;
 			children = (
 				5B91818029965EB4002FCF5E /* Profile */,
+				5B0C3B3E29AA6BE500DC58FD /* Post */,
+				5B0C3B3F29AA6BFC00DC58FD /* Login */,
+				5B0C3B4029AA6C2E00DC58FD /* Feed */,
+				5B0C3B4129AA6C3700DC58FD /* Info */,
 				5B810A5F2991375400876B69 /* AppDelegate.swift */,
 				5B810A612991375400876B69 /* SceneDelegate.swift */,
-				5B810A8029915AF000876B69 /* FeedViewController.swift */,
-				5B91817A29928DD4002FCF5E /* PostViewController.swift */,
-				5B91817E29928ECF002FCF5E /* InfoViewController.swift */,
-				5B91817C29928E8A002FCF5E /* Post.swift */,
 				5B810A632991375400876B69 /* ViewController.swift */,
+				5B0C3B3C29AA439F00DC58FD /* UIView+Extension.swift */,
 				5B810A682991375500876B69 /* Assets.xcassets */,
 				5B810A6A2991375500876B69 /* LaunchScreen.storyboard */,
 				5B810A6D2991375500876B69 /* Info.plist */,
@@ -88,7 +127,6 @@
 			children = (
 				5B91818529967494002FCF5E /* ProfileHeaderView.swift */,
 				5B810A8229915AFD00876B69 /* ProfileViewController.swift */,
-				5B4A0499299E2D3700FCE31D /* LogInViewController.swift */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -163,11 +201,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5B0C3B3B29AA422000DC58FD /* PostTableViewCell.swift in Sources */,
 				5B810A8329915AFD00876B69 /* ProfileViewController.swift in Sources */,
 				5B810A642991375400876B69 /* ViewController.swift in Sources */,
 				5B91817B29928DD4002FCF5E /* PostViewController.swift in Sources */,
 				5B810A8129915AF000876B69 /* FeedViewController.swift in Sources */,
 				5B810A602991375400876B69 /* AppDelegate.swift in Sources */,
+				5B0C3B3D29AA439F00DC58FD /* UIView+Extension.swift in Sources */,
 				5B91817D29928E8A002FCF5E /* Post.swift in Sources */,
 				5B91817F29928ECF002FCF5E /* InfoViewController.swift in Sources */,
 				5B91818629967494002FCF5E /* ProfileHeaderView.swift in Sources */,
@@ -311,6 +351,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 4MRQBSM288;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Navigation/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -337,6 +378,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 4MRQBSM288;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Navigation/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
