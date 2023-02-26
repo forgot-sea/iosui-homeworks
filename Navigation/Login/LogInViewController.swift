@@ -113,6 +113,10 @@ class LogInViewController: UIViewController {
     @objc private func tapLoginAction() {
         let profileVC = ProfileViewController()
         navigationController?.pushViewController(profileVC, animated: true)
+
+//        profileVC.tabBarItem.title = "Профиль"
+//        profileVC.tabBarItem.image = UIImage(systemName: "person.crop.circle")
+//        navigationController?.setViewControllers([profileVC], animated: true)
     }
     
     private func layout(){
@@ -155,8 +159,14 @@ class LogInViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        let tap = UITapGestureRecognizer(target: self, action: #selector(UIInputViewController.dismissKeyboard))
+        view.addGestureRecognizer(tap)
         view.backgroundColor = .white
         layout()
+    }
+    
+    @objc func dismissKeyboard() {
+        view.endEditing(true)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -177,15 +187,12 @@ class LogInViewController: UIViewController {
             scrollView.contentInset.bottom = keybordSize.height
             scrollView.verticalScrollIndicatorInsets = UIEdgeInsets(top: 0, left: 0, bottom: keybordSize.height, right: 0)
         }
-        
     }
     
     @objc private func keyboardWillHide() {
         scrollView.contentInset = .zero
         scrollView.verticalScrollIndicatorInsets = .zero
     }
-    
-    
 }
 
 

@@ -21,14 +21,12 @@ class InfoViewController: UIViewController {
         super.viewDidLoad()
         view.backgroundColor = UIColor.systemGray6
         setupAlertButton()
-        
     }
     
     private func setupAlertButton() {
         view.addSubview(alertButton)
         alertButton.center = view.center
         alertButton.addTarget(self, action: #selector(tapAlertAction), for: .touchUpInside)
-    
     }
     
     @objc private func tapAlertAction() {
