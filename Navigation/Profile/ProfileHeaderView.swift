@@ -38,7 +38,7 @@ class ProfileHeaderView: UIView {
         return myStatus
     }()
     
-    private let text: UITextField = {
+    private lazy var text: UITextField = {
         let myText = UITextField(frame: .zero)
         myText.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 10, height: myText.frame.height))
         myText.leftViewMode = .always
@@ -49,6 +49,7 @@ class ProfileHeaderView: UIView {
         myText.layer.borderColor = UIColor.black.cgColor
         myText.layer.borderWidth = 1
         myText.backgroundColor = .white
+        myText.delegate = self
         return myText
     }()
     
@@ -116,5 +117,16 @@ class ProfileHeaderView: UIView {
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+}
+extension ProfileHeaderView: UITextFieldDelegate{
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        endEditing(true)
+        if text.text == "" {
+            status.text = "Waiting for something..."
+        }else{
+            status.text = text.text}
+        print(text.text ?? "")
+        return true
     }
 }
