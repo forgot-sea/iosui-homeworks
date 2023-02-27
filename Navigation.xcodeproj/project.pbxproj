@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		5B0C3B3B29AA422000DC58FD /* PostTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B0C3B3A29AA422000DC58FD /* PostTableViewCell.swift */; };
 		5B0C3B3D29AA439F00DC58FD /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B0C3B3C29AA439F00DC58FD /* UIView+Extension.swift */; };
+		5B40AE2C29ACFBC400ED5F89 /* PhotosTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B40AE2B29ACFBC400ED5F89 /* PhotosTableViewCell.swift */; };
 		5B4A049A299E2D3700FCE31D /* LogInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B4A0499299E2D3700FCE31D /* LogInViewController.swift */; };
 		5B810A602991375400876B69 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B810A5F2991375400876B69 /* AppDelegate.swift */; };
 		5B810A622991375400876B69 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B810A612991375400876B69 /* SceneDelegate.swift */; };
@@ -26,6 +27,7 @@
 /* Begin PBXFileReference section */
 		5B0C3B3A29AA422000DC58FD /* PostTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostTableViewCell.swift; sourceTree = "<group>"; };
 		5B0C3B3C29AA439F00DC58FD /* UIView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
+		5B40AE2B29ACFBC400ED5F89 /* PhotosTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosTableViewCell.swift; sourceTree = "<group>"; };
 		5B4A0499299E2D3700FCE31D /* LogInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInViewController.swift; sourceTree = "<group>"; };
 		5B810A5C2991375400876B69 /* Navigation.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Navigation.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5B810A5F2991375400876B69 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -87,6 +89,14 @@
 			path = Info;
 			sourceTree = "<group>";
 		};
+		5B40AE2A29ACFBB700ED5F89 /* Photos */ = {
+			isa = PBXGroup;
+			children = (
+				5B40AE2B29ACFBC400ED5F89 /* PhotosTableViewCell.swift */,
+			);
+			path = Photos;
+			sourceTree = "<group>";
+		};
 		5B810A532991375400876B69 = {
 			isa = PBXGroup;
 			children = (
@@ -106,6 +116,7 @@
 		5B810A5E2991375400876B69 /* Navigation */ = {
 			isa = PBXGroup;
 			children = (
+				5B40AE2A29ACFBB700ED5F89 /* Photos */,
 				5B91818029965EB4002FCF5E /* Profile */,
 				5B0C3B3E29AA6BE500DC58FD /* Post */,
 				5B0C3B3F29AA6BFC00DC58FD /* Login */,
@@ -210,6 +221,7 @@
 				5B0C3B3D29AA439F00DC58FD /* UIView+Extension.swift in Sources */,
 				5B91817D29928E8A002FCF5E /* Post.swift in Sources */,
 				5B91817F29928ECF002FCF5E /* InfoViewController.swift in Sources */,
+				5B40AE2C29ACFBC400ED5F89 /* PhotosTableViewCell.swift in Sources */,
 				5B91818629967494002FCF5E /* ProfileHeaderView.swift in Sources */,
 				5B4A049A299E2D3700FCE31D /* LogInViewController.swift in Sources */,
 				5B810A622991375400876B69 /* SceneDelegate.swift in Sources */,

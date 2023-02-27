@@ -1,0 +1,12 @@
+{
+  "images" : [
+    {
+      "filename" : "Chinese Wall.jpg",
+      "idiom" : "universal"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  }
+}

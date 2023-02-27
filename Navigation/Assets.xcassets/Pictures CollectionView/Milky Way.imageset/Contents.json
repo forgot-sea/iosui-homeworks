@@ -1,0 +1,12 @@
+{
+  "images" : [
+    {
+      "filename" : "Milky Way.jpg",
+      "idiom" : "universal"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  }
+}
