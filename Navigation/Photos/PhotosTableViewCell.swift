@@ -8,6 +8,7 @@
 import UIKit
 
 class PhotosTableViewCell: UITableViewCell {
+    // MARK: - Properties
 
     private let heading: UILabel = {
         let lable = UILabel()
@@ -18,7 +19,7 @@ class PhotosTableViewCell: UITableViewCell {
         return lable
     }()
 
-    private let moveButton: UIButton = {
+     let moveButton: UIButton = {
         let button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
         button.setImage(UIImage(systemName:"arrow.right"), for: .normal)
@@ -29,7 +30,7 @@ class PhotosTableViewCell: UITableViewCell {
     private let photos1: UIImageView = {
         let image = UIImageView()
         image.translatesAutoresizingMaskIntoConstraints = false
-        image.image = UIImage(named: "Architecture")
+        image.image = UIImage(named: "1")
         image.layer.cornerRadius = 6
         image.layer.masksToBounds = true
         return image
@@ -38,7 +39,7 @@ class PhotosTableViewCell: UITableViewCell {
     private let photos2: UIImageView = {
         let image = UIImageView()
         image.translatesAutoresizingMaskIntoConstraints = false
-        image.image = UIImage(named: "bear")
+        image.image = UIImage(named: "2")
         image.layer.cornerRadius = 6
         image.layer.masksToBounds = true
         return image
@@ -47,7 +48,7 @@ class PhotosTableViewCell: UITableViewCell {
     private let photos3: UIImageView = {
         let image = UIImageView()
         image.translatesAutoresizingMaskIntoConstraints = false
-        image.image = UIImage(named: "Bird")
+        image.image = UIImage(named: "3")
         image.layer.cornerRadius = 6
         image.layer.masksToBounds = true
         return image
@@ -56,12 +57,14 @@ class PhotosTableViewCell: UITableViewCell {
     private let photos4: UIImageView = {
         let image = UIImageView()
         image.translatesAutoresizingMaskIntoConstraints = false
-        image.image = UIImage(named: "Cat")
+        image.image = UIImage(named: "4")
         image.layer.cornerRadius = 6
         image.layer.masksToBounds = true
         return image
     }()
     
+    // MARK: - Initializer
+
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         layout()
@@ -71,17 +74,9 @@ class PhotosTableViewCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-//    override func prepareForReuse() {
-//        super.prepareForReuse()
-//        heading.text = ""
-//        moveButton.setImage(nil, for: .normal)
-//        photos1.image = nil
-//        photos2.image = nil
-//        photos3.image = nil
-//        photos4.image = nil
-//    }
-    
+    // MARK: - Private Methods
     func layout() {
+        contentView.isUserInteractionEnabled = true
         let size = UIScreen.main.bounds.size.width - 48
         let size2 = size/4
         [heading, moveButton, photos1, photos2, photos3, photos4].forEach {

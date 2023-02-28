@@ -9,6 +9,8 @@ import UIKit
 
 class ProfileViewController: UIViewController {
     
+    // MARK: - Properties
+
     private let postmodel = Post.makeMockPost()
     
     private lazy var myTableView: UITableView = {
@@ -21,6 +23,8 @@ class ProfileViewController: UIViewController {
         return tableView
     }()
     
+    // MARK: - Life Cycle
+
     override func viewDidLoad() {
         super.viewDidLoad()
         let tap = UITapGestureRecognizer(target: self, action: #selector(UIInputViewController.dismissKeyboard))
@@ -29,6 +33,8 @@ class ProfileViewController: UIViewController {
         layout()
     }
     
+    // MARK: - Private Methods
+
     @objc func dismissKeyboard() {
         view.endEditing(true)
     }
@@ -44,6 +50,8 @@ class ProfileViewController: UIViewController {
     }
 }
 
+// MARK: - UITableViewDataSource
+
 extension ProfileViewController: UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
         2
@@ -58,22 +66,16 @@ extension ProfileViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-//        let cell = tableView.dequeueReusableCell(withIdentifier: PostTableViewCell.identifier, for: indexPath) as! PostTableViewCell
-//        cell.setupCell(model: postmodel[indexPath.row])
-//
-//        return cell
         switch indexPath.section {
         case 0:
             let cell = tableView.dequeueReusableCell(withIdentifier: PhotosTableViewCell.identifier, for: indexPath) as! PhotosTableViewCell
-                       return cell
+            cell.moveButton.addTarget(self, action: #selector(setupGoButton), for: .touchUpInside)
+            return cell
             
         default:
-            
             let cell = tableView.dequeueReusableCell(withIdentifier: PostTableViewCell.identifier, for: indexPath) as! PostTableViewCell
-                   cell.setupCell(model: postmodel[indexPath.row])
-                       return cell
-            
-            
+            cell.setupCell(model: postmodel[indexPath.row])
+            return cell
         }
     }
     
@@ -86,9 +88,16 @@ extension ProfileViewController: UITableViewDataSource {
             let header = ProfileHeaderView()
             return header
         }
-        
+    }
+    
+    @objc func setupGoButton() {
+        let photosVC = PhotosViewController()
+        photosVC.title = "Photos"
+        navigationController?.pushViewController(photosVC, animated: true)
     }
 }
+
+// MARK: - UITableViewDelegate
 
 extension ProfileViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -102,6 +111,5 @@ extension ProfileViewController: UITableViewDelegate {
         default:
             return 0
         }
-//        return UITableView.automaticDimension
     }
 }
