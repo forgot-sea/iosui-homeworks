@@ -8,7 +8,16 @@
 import UIKit
 class ProfileHeaderView: UIView {
     
-    private let avatar: UIImageView = {
+     let backgroundView: UIView = {
+        let view = UIView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+//        view.backgroundColor = .systemGray3
+//        view.alpha = 0.3
+        return view
+    }()
+    
+    
+     let avatar: UIImageView = {
         let avatarImage = UIImageView(frame: .zero)
 //        avatarImage.image = UIImage(named: "abc")
         avatarImage.image = UIImage(named: "scale_1200")
@@ -77,21 +86,29 @@ class ProfileHeaderView: UIView {
     }
     
     func myAddSubview() {
+        addSubview(backgroundView)
         addSubview(avatar)
-        addSubview(name)
-        addSubview(status)
-        addSubview(text)
-        addSubview(statusButton)
+        backgroundView.addSubview(name)
+        backgroundView.addSubview(status)
+        backgroundView.addSubview(text)
+        backgroundView.addSubview(statusButton)
     }
     
     func myConstraint() {
+         var imageSize: CGFloat { return 100 }
+         
         NSLayoutConstraint.activate([
+            backgroundView.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor),
+            backgroundView.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor),
+            backgroundView.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor),
+            backgroundView.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor),
+            
             avatar.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 16),
             avatar.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: 16),
-            avatar.heightAnchor.constraint(equalToConstant: 100),
-            avatar.widthAnchor.constraint(equalToConstant: 100),
+            avatar.heightAnchor.constraint(equalToConstant: imageSize),
+            avatar.widthAnchor.constraint(equalToConstant: imageSize),
 
-            name.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 27),
+            name.topAnchor.constraint(equalTo: backgroundView.topAnchor, constant: 27),
             name.leftAnchor.constraint(equalTo: avatar.rightAnchor, constant: 20),
 
             status.topAnchor.constraint(equalTo: name.bottomAnchor, constant: 12),
@@ -99,14 +116,14 @@ class ProfileHeaderView: UIView {
 
             text.bottomAnchor.constraint(equalTo: statusButton.topAnchor, constant: -15),
             text.leftAnchor.constraint(equalTo: avatar.rightAnchor, constant: 10),
-            text.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: -16),
+            text.trailingAnchor.constraint(equalTo: backgroundView.trailingAnchor, constant: -16),
             text.heightAnchor.constraint(equalToConstant: 40),
 
             statusButton.topAnchor.constraint(equalTo: avatar.bottomAnchor, constant: 45),
-            statusButton.leftAnchor.constraint(equalTo: safeAreaLayoutGuide.leftAnchor, constant: 16),
-            statusButton.rightAnchor.constraint(equalTo: safeAreaLayoutGuide.rightAnchor, constant: -16),
+            statusButton.leftAnchor.constraint(equalTo: backgroundView.leftAnchor, constant: 16),
+            statusButton.rightAnchor.constraint(equalTo: backgroundView.rightAnchor, constant: -16),
             statusButton.heightAnchor.constraint(equalToConstant: 50),
-            statusButton.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor, constant: -16)])
+            statusButton.bottomAnchor.constraint(equalTo: backgroundView.bottomAnchor, constant: -16)])
     }
     
     override init(frame: CGRect) {
