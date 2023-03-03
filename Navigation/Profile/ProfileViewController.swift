@@ -52,7 +52,7 @@ class ProfileViewController: UIViewController {
         self.myTableView.cellForRow(at: IndexPath(row: 0, section: 0))?.isUserInteractionEnabled = false
         self.myTableView.isScrollEnabled = false
 
-        UIView.animate(withDuration: 1.0) {
+        UIView.animate(withDuration: 0.6) {
             print(self.avatarOriginPoint)
             self.profileHeaderV.avatar.center = CGPoint(x: UIScreen.main.bounds.midX,
                                                         y: UIScreen.main.bounds.midY - self.avatarOriginPoint.y)
@@ -74,7 +74,7 @@ class ProfileViewController: UIViewController {
         myTableView.cellForRow(at: IndexPath(row: 0, section: 0))?.isUserInteractionEnabled = true
         myTableView.isScrollEnabled = true
         
-        UIImageView.animate(withDuration: 1) {
+        UIImageView.animate(withDuration: 0.6) {
             self.profileHeaderV.avatar.transform = CGAffineTransform(scaleX: 1, y: 1)
             self.profileHeaderV.avatar.layer.cornerRadius = 50
             self.profileHeaderV.avatar.center = CGPoint(x: self.avatarOriginPoint.x,
