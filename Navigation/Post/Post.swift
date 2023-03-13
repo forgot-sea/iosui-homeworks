@@ -11,8 +11,8 @@ struct Post {
     let author: String
     let discription: String
     let image: UIImage
-    let likes: Int
-    let views: Int
+    var likes: Int
+    var views: Int
     
     static func makeMockPost() -> [Post] {
         return [

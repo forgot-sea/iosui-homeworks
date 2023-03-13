@@ -11,7 +11,7 @@ class ProfileViewController: UIViewController {
     
     // MARK: - Properties
 
-    private let postmodel = Post.makeMockPost()
+    private var postmodel = Post.makeMockPost()
     let profileHeaderV = ProfileHeaderView()
     lazy var avatarOriginPoint = self.profileHeaderV.avatar.center
     
@@ -126,8 +126,20 @@ extension ProfileViewController: UITableViewDataSource {
         default:
             let cell = tableView.dequeueReusableCell(withIdentifier: PostTableViewCell.identifier, for: indexPath) as! PostTableViewCell
             cell.setupCell(model: postmodel[indexPath.row])
+            
+            let tapLikes = LikesTapGesture(target: self, action: #selector(likesCountLabelClicked(_ :)))
+            tapLikes.indexPath = indexPath
+            cell.likesText.addGestureRecognizer(tapLikes)
+            cell.likesText.isUserInteractionEnabled = true
+        
             return cell
         }
+    }
+    
+    @objc func likesCountLabelClicked(_ sender: LikesTapGesture) {
+        guard let indexPath = sender.indexPath else { return }
+        postmodel[indexPath.row].likes += 1
+        myTableView.reloadData()
     }
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
@@ -163,4 +175,18 @@ extension ProfileViewController: UITableViewDelegate {
             return 0
         }
     }
+    
+    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        return indexPath.section == 1
+    }
+    
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if indexPath.section == 1 && editingStyle == .delete {
+            postmodel.remove(at: indexPath.row)
+            tableView.deleteRows(at: [indexPath], with: .fade)
+        }
+    }
+}
+class LikesTapGesture: UITapGestureRecognizer {
+    var indexPath: IndexPath?
 }
