@@ -110,13 +110,58 @@ class LogInViewController: UIViewController {
         return button
     }()
     
+    private let passwordCount: UILabel = {
+        let lable = UILabel(frame: .zero)
+        lable.translatesAutoresizingMaskIntoConstraints = false
+        lable.text = "Пароль должен содержать миниму 3 символа"
+        lable.isHidden = true
+       return lable
+    }()
+    
     @objc private func tapLoginAction() {
         let profileVC = ProfileViewController()
-        navigationController?.pushViewController(profileVC, animated: true)
+        if emailTextField.text?.count != 0 {
+            if passwordTextField.text?.count != 0 {
+                if  validateEmail(enteredEmail: emailTextField.text!) {
+                    if passwordTextField.text!.count >= 3 {
+                        if emailTextField.text == "example@email.com" && passwordTextField.text == "myPassword"{
+                            navigationController?.pushViewController(profileVC, animated: true)
+                        }else{
+                            let alert = UIAlertController(title: "Ошибка аунтификации", message: "Введен не верный пароль или почта email: example@email.com \n password: myPassword", preferredStyle: .alert)
+                            let cancelAction = UIAlertAction(title: "Отмена", style: .destructive)
+                            alert.addAction(cancelAction)
+                            present(alert, animated: true)   }
+                    }else{
+                        passwordCount.isHidden = false
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+                            self.passwordCount.isHidden = true }}
+                }else{
+                    let alert = UIAlertController(title: "Не валидный email", message: "Введен не валидный email \n Пример валидного email: example@email.com", preferredStyle: .alert)
+                    let cancelAction = UIAlertAction(title: "Отмена", style: .destructive)
+                    alert.addAction(cancelAction)
+                    present(alert, animated: true) }
+            }else{
+                shakeAnimation(passwordTextField) }
+        }else{
+            shakeAnimation(emailTextField) }
+    }
+    
+    private func shakeAnimation(_ textField : UITextField) {
+        let animation = CABasicAnimation(keyPath: "position")
+        animation.duration = 0.07
+        animation.repeatCount = 4
+        animation.autoreverses = true
+        animation.fromValue = NSValue(cgPoint: CGPoint(x: textField.center.x - 10, y: textField.center.y))
+        animation.toValue = NSValue(cgPoint: CGPoint(x: textField.center.x + 10, y: textField.center.y))
+        textField.layer.add(animation, forKey: "position")
+    }
+    
+    func validateEmail(enteredEmail:String) -> Bool {
 
-//        profileVC.tabBarItem.title = "Профиль"
-//        profileVC.tabBarItem.image = UIImage(systemName: "person.crop.circle")
-//        navigationController?.setViewControllers([profileVC], animated: true)
+        let emailFormat = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,64}"
+        let emailPredicate = NSPredicate(format:"SELF MATCHES %@", emailFormat)
+        return emailPredicate.evaluate(with: enteredEmail)
+
     }
     
     private func layout(){
@@ -124,6 +169,7 @@ class LogInViewController: UIViewController {
         scrollView.addSubview(contentView)
         contentView.addSubview(vkLogo)
         contentView.addSubview(stackView)
+        contentView.addSubview(passwordCount)
         stackView.addArrangedSubview(emailTextField)
         stackView.addArrangedSubview(passwordTextField)
         contentView.addSubview(logInButton)
@@ -151,7 +197,10 @@ class LogInViewController: UIViewController {
             stackView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
             stackView.heightAnchor.constraint(equalToConstant: 100),
             
-            logInButton.topAnchor.constraint(equalTo: stackView.bottomAnchor, constant: 16),
+            passwordCount.topAnchor.constraint(equalTo: stackView.bottomAnchor, constant: 16),
+            passwordCount.leadingAnchor.constraint(equalTo: stackView.leadingAnchor),
+            
+            logInButton.topAnchor.constraint(equalTo: passwordCount.bottomAnchor, constant: 16),
             logInButton.leadingAnchor.constraint(equalTo: stackView.leadingAnchor),
             logInButton.trailingAnchor.constraint(equalTo: stackView.trailingAnchor),
             logInButton.heightAnchor.constraint(equalToConstant: 50)])
