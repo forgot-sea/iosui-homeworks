@@ -8,9 +8,29 @@
 import UIKit
 class ProfileHeaderView: UIView {
     
-    private let avatar: UIImageView = {
+    let backgroundView: UIView = {
+        let view = UIView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height))
+        view.backgroundColor = .darkGray
+        view.isHidden = true
+        view.alpha = 0
+        
+        return view
+    }()
+    
+    lazy var returnAvatarButton: UIButton = {
+        let button = UIButton()
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.alpha = 0
+        button.setImage(UIImage(systemName: "xmark", withConfiguration: UIImage.SymbolConfiguration(pointSize: 25)), for: .normal)
+        button.contentMode = .scaleToFill
+        button.tintColor = .black
+        
+        return button
+    }()
+    
+    let avatar: UIImageView = {
         let avatarImage = UIImageView(frame: .zero)
-//        avatarImage.image = UIImage(named: "abc")
+        //        avatarImage.image = UIImage(named: "abc")
         avatarImage.image = UIImage(named: "scale_1200")
         avatarImage.layer.cornerRadius = 50
         avatarImage.layer.masksToBounds = true
@@ -18,6 +38,7 @@ class ProfileHeaderView: UIView {
         avatarImage.contentMode = .scaleAspectFill
         avatarImage.layer.borderColor = UIColor.white.cgColor
         avatarImage.translatesAutoresizingMaskIntoConstraints = false
+        avatarImage.isUserInteractionEnabled = true
         return avatarImage
     }()
     
@@ -77,31 +98,41 @@ class ProfileHeaderView: UIView {
     }
     
     func myAddSubview() {
-        addSubview(avatar)
         addSubview(name)
         addSubview(status)
         addSubview(text)
         addSubview(statusButton)
     }
     
+    func myAddSubviewAvatar() {
+        addSubview(backgroundView)
+        addSubview(avatar)
+        addSubview(returnAvatarButton)
+        
+    }
+    
     func myConstraint() {
+        
         NSLayoutConstraint.activate([
             avatar.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 16),
             avatar.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: 16),
             avatar.heightAnchor.constraint(equalToConstant: 100),
             avatar.widthAnchor.constraint(equalToConstant: 100),
-
+            
+            returnAvatarButton.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 16),
+            returnAvatarButton.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: -16),
+            
             name.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 27),
             name.leftAnchor.constraint(equalTo: avatar.rightAnchor, constant: 20),
-
+            
             status.topAnchor.constraint(equalTo: name.bottomAnchor, constant: 12),
             status.leftAnchor.constraint(equalTo: avatar.rightAnchor, constant: 20),
-
+            
             text.bottomAnchor.constraint(equalTo: statusButton.topAnchor, constant: -15),
             text.leftAnchor.constraint(equalTo: avatar.rightAnchor, constant: 10),
             text.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: -16),
             text.heightAnchor.constraint(equalToConstant: 40),
-
+            
             statusButton.topAnchor.constraint(equalTo: avatar.bottomAnchor, constant: 45),
             statusButton.leftAnchor.constraint(equalTo: safeAreaLayoutGuide.leftAnchor, constant: 16),
             statusButton.rightAnchor.constraint(equalTo: safeAreaLayoutGuide.rightAnchor, constant: -16),
@@ -112,6 +143,7 @@ class ProfileHeaderView: UIView {
     override init(frame: CGRect) {
         super.init(frame: .zero)
         myAddSubview()
+        myAddSubviewAvatar()
         myConstraint()
     }
     
