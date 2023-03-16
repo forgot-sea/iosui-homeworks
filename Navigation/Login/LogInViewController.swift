@@ -120,32 +120,30 @@ class LogInViewController: UIViewController {
     
     @objc private func tapLoginAction() {
         let profileVC = ProfileViewController()
-        navigationController?.pushViewController(profileVC, animated: true)
-
-//        if emailTextField.text?.count != 0 {
-//            if passwordTextField.text?.count != 0 {
-//                if  validateEmail(enteredEmail: emailTextField.text!) {
-//                    if passwordTextField.text!.count >= 3 {
-//                        if emailTextField.text == "example@email.com" && passwordTextField.text == "myPassword"{
-//                            navigationController?.pushViewController(profileVC, animated: true)
-//                        }else{
-//                            let alert = UIAlertController(title: "Ошибка аунтификации", message: "Введен не верный пароль или почта email: example@email.com \n password: myPassword", preferredStyle: .alert)
-//                            let cancelAction = UIAlertAction(title: "Отмена", style: .destructive)
-//                            alert.addAction(cancelAction)
-//                            present(alert, animated: true)   }
-//                    }else{
-//                        passwordCount.isHidden = false
-//                        DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
-//                            self.passwordCount.isHidden = true }}
-//                }else{
-//                    let alert = UIAlertController(title: "Не валидный email", message: "Введен не валидный email \n Пример валидного email: example@email.com", preferredStyle: .alert)
-//                    let cancelAction = UIAlertAction(title: "Отмена", style: .destructive)
-//                    alert.addAction(cancelAction)
-//                    present(alert, animated: true) }
-//            }else{
-//                shakeAnimation(passwordTextField) }
-//        }else{
-//            shakeAnimation(emailTextField) }
+        if emailTextField.text?.count != 0 {
+            if passwordTextField.text?.count != 0 {
+                if  validateEmail(enteredEmail: emailTextField.text!) {
+                    if passwordTextField.text!.count >= 3 {
+                        if emailTextField.text == "example@email.com" && passwordTextField.text == "myPassword"{
+                            navigationController?.pushViewController(profileVC, animated: true)
+                        }else{
+                            let alert = UIAlertController(title: "Ошибка аунтификации", message: "Введен не верный пароль или почта email: example@email.com \n password: myPassword", preferredStyle: .alert)
+                            let cancelAction = UIAlertAction(title: "Отмена", style: .destructive)
+                            alert.addAction(cancelAction)
+                            present(alert, animated: true)   }
+                    }else{
+                        passwordCount.isHidden = false
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+                            self.passwordCount.isHidden = true }}
+                }else{
+                    let alert = UIAlertController(title: "Не валидный email", message: "Введен не валидный email \n Пример валидного email: example@email.com", preferredStyle: .alert)
+                    let cancelAction = UIAlertAction(title: "Отмена", style: .destructive)
+                    alert.addAction(cancelAction)
+                    present(alert, animated: true) }
+            }else{
+                shakeAnimation(passwordTextField) }
+        }else{
+            shakeAnimation(emailTextField) }
     }
     
     private func shakeAnimation(_ textField : UITextField) {
