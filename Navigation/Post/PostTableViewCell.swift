@@ -29,7 +29,7 @@ class PostTableViewCell: UITableViewCell {
         return lable
     }()
     
-    private let posImageView: UIImageView = {
+     let posImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.backgroundColor = .black
@@ -37,7 +37,7 @@ class PostTableViewCell: UITableViewCell {
         return imageView
     }()
 
-    private let likesText: UILabel = {
+     let likesText: UILabel = {
         let lable = UILabel()
         lable.translatesAutoresizingMaskIntoConstraints = false
         lable.backgroundColor = .white

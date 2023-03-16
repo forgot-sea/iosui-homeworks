@@ -11,7 +11,6 @@ class ProfileViewController: UIViewController {
     
     // MARK: - Properties
 
-    private let postmodel = Post.makeMockPost()
     let profileHeaderV = ProfileHeaderView()
     lazy var avatarOriginPoint = self.profileHeaderV.avatar.center
     
@@ -112,7 +111,7 @@ extension ProfileViewController: UITableViewDataSource {
         case 0:
             return 1
         default:
-            return postmodel.count
+            return postList.count
         }
     }
     
@@ -124,10 +123,42 @@ extension ProfileViewController: UITableViewDataSource {
             return cell
             
         default:
+            let newsPostViewController = NewsPostViewController()
+            newsPostViewController.indexOfPostList = indexPath.row
+            
             let cell = tableView.dequeueReusableCell(withIdentifier: PostTableViewCell.identifier, for: indexPath) as! PostTableViewCell
-            cell.setupCell(model: postmodel[indexPath.row])
+            cell.setupCell(model: postList[indexPath.row])
+
+            
+            let tapLikes = LikesTapGesture(target: self, action: #selector(likesCountLabelClicked(_ :)))
+            tapLikes.indexPath = indexPath
+            cell.likesText.addGestureRecognizer(tapLikes)
+            cell.likesText.isUserInteractionEnabled = true
+            
+            let tapPostImageView = PostTapGesture(target: self, action: #selector(postClicked(_ :)))
+            tapPostImageView.indexPath = indexPath
+            cell.posImageView.addGestureRecognizer(tapPostImageView)
+            cell.posImageView.isUserInteractionEnabled = true
+        
             return cell
         }
+    }
+    
+    @objc func likesCountLabelClicked(_ sender: LikesTapGesture) {
+        guard let indexPath = sender.indexPath else { return }
+        postList[indexPath.row].likes += 1
+
+        myTableView.reloadData()
+    }
+    
+    @objc func postClicked(_ sender: PostTapGesture) {
+        guard let indexPath = sender.indexPath else { return }
+        postList[indexPath.row].views += 1
+
+        let newsPostViewController = NewsPostViewController()
+        newsPostViewController.indexOfPostList = indexPath.row
+        navigationController?.pushViewController(newsPostViewController, animated: true)
+        myTableView.reloadData()
     }
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
@@ -163,4 +194,22 @@ extension ProfileViewController: UITableViewDelegate {
             return 0
         }
     }
+    
+    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        return indexPath.section == 1
+    }
+    
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if indexPath.section == 1 && editingStyle == .delete {
+            postList.remove(at: indexPath.row)
+
+            tableView.deleteRows(at: [indexPath], with: .fade)
+        }
+    }
+}
+class LikesTapGesture: UITapGestureRecognizer {
+    var indexPath: IndexPath?
+}
+class PostTapGesture: UITapGestureRecognizer {
+    var indexPath: IndexPath?
 }

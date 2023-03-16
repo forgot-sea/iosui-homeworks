@@ -10,7 +10,7 @@ final class PhotosCollectionViewCell: UICollectionViewCell {
     
     // MARK: - Properties
     
-    private let photos1: UIImageView = {
+     let photos1: UIImageView = {
         let image = UIImageView()
         image.translatesAutoresizingMaskIntoConstraints = false
         image.layer.cornerRadius = 6

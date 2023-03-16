@@ -90,11 +90,21 @@ class ProfileHeaderView: UIView {
     }()
     
     @objc func buttonPressed(){
-        if text.text == "" {
+        if text.text?.count == 0 {
+            shakeAnimation(text)
             status.text = "Waiting for something..."
         }else{
             status.text = text.text}
-        print(text.text ?? "")
+    }
+    
+    private func shakeAnimation(_ textField : UITextField) {
+        let animation = CABasicAnimation(keyPath: "position")
+        animation.duration = 0.07
+        animation.repeatCount = 4
+        animation.autoreverses = true
+        animation.fromValue = NSValue(cgPoint: CGPoint(x: textField.center.x - 10, y: textField.center.y))
+        animation.toValue = NSValue(cgPoint: CGPoint(x: textField.center.x + 10, y: textField.center.y))
+        textField.layer.add(animation, forKey: "position")
     }
     
     func myAddSubview() {
@@ -154,11 +164,7 @@ class ProfileHeaderView: UIView {
 extension ProfileHeaderView: UITextFieldDelegate{
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         endEditing(true)
-        if text.text == "" {
-            status.text = "Waiting for something..."
-        }else{
-            status.text = text.text}
-        print(text.text ?? "")
+        buttonPressed()
         return true
     }
 }
